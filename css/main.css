@@ -1,61 +1,52 @@
-body {
-    background-color: darkslategray;
-    text-align: center;
-}
 
-h1 {
-    background-color: darkcyan;
+h1 {    
     font-family: 'Roboto', sans-serif;
 }
 
-ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    width: 200px;
-    background-color: darkcyan
-}
+body {
+    margin: 0;  
+    background-color: #771603;    
+    text-align: center;
+    }
 
 p {
     white-space: pre;
     font-family: 'Roboto', sans-serif;
+    color: white    
 }
 
-li a {
+ul.topnav {
+    display: block; 
+    text-align:center;
+    list-style-type: none;
+    margin: 0;  
+    padding: 0;
+    overflow: hidden;
+    background-color: #f64b15;
+    font-family: 'Roboto', sans-serif;    
+}
+
+ul.topnav li {    
+    display: inline-block;
+}
+
+ul.topnav li a {
     display: block;
-    color: #000;
-    padding: 8px 16px;
-    text-decoration: none;
-    font-family: 'Roboto', sans-serif;
-}
-
-/* Change the link color on hover */
-li a:hover {
-    background-color: darkslategray;
     color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
 }
 
-#contenedor { 
-    white-space: nowrap;
-    text-align: left;
-    margin: 0 75px 0 0;
-    vertical-align: middle;
-    display: inline-block; }
-#alignment { 
-    height: 100%;
-    vertical-align: middle;
-    display: inline-block; }
-#menu {
-    background: darkslategray;
-    width: 200px;
-    height: 200px;
-   
-    display: inline-block; }
-#main { 
-    background: darkslategray;
-    width: 300px;
-    height: 400px;
-    vertical-align: middle;
-    text-align:"justify";
-    display: inline-block; 
-    }
+ul.topnav li a:hover:not(.active) {background-color: #111;}
+
+ul.topnav li a.active {background-color: #4CAF50;}
+
+ul.topnav li.right {float: right;}
+
+@media screen and (max-width: 600px){
+    ul.topnav li.right, 
+    ul.topnav li {float: none;}
+}
+
+
