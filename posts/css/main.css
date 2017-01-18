@@ -1,0 +1,46 @@
+
+h2 {    
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    margin: 0;  
+    background-color: whitesmoke;    
+    text-align: center;
+    }
+
+p {
+    white-space: pre;
+    font-family: 'Poppins', sans-serif;
+    color: black   
+}
+
+
+
+@media screen and (max-width: 600px){
+    ul.topnav li.right, 
+    ul.topnav li {float: none;}
+}
+
+hr { 
+    display: block;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    margin-left: auto;
+    margin-right: auto;
+    border-style: inset;
+    border-width: 1px;
+} 
+
+table {
+    background: whitesmoke;
+    font-family: 'Poppins', sans-serif;
+}
+
+.breadcrumb li {
+    font-family: 'Poppins', sans-serif;
+    display: inline;
+}
+.breadcrumb li+li:before {
+    content:"/ ";
+}
