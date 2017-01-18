@@ -6,9 +6,6 @@ import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
 
-
-
-
 public class Main {
     static Scanner scanner = new Scanner(System.in);
     static Post postActual = new Post();
@@ -18,7 +15,6 @@ public class Main {
     public static void main(String [] buenasTardes){
        menu.mostrarMenu();
     }
-
 }
 
 class Menu{
@@ -57,13 +53,13 @@ class Menu{
             case 5:
                 
                 crearArchivo();
-                 Main.mostrarTexto.text("FIN");
+                Main.mostrarTexto.text("FIN");
                 break;
             default:
                 break;
         }
     }
-
+    
      public void mostrarMenu(){    
          System.out.println(helpText+"Bmustach MENU"+helpText);
          String tituloOK = Main.postActual.titulo != null ? "-OK" : "";
@@ -76,11 +72,8 @@ class Menu{
               int tipoMenu = Integer.parseInt( Main.scanner.next() );
               Main.menu.seleccionMenu(tipoMenu);
         } catch (Exception e) {
-            System.out.println("mostrar menu");
             mostrarMenu();
         }
-       
-        
     }
 
     public void crearArchivo(){
@@ -88,8 +81,14 @@ class Menu{
 
         try {
             writer = new BufferedWriter(new OutputStreamWriter(
-                new FileOutputStream(Main.postActual.titulo+".txt"), "utf-8"));
-            writer.write(Main.postActual.texto);
+                new FileOutputStream(Main.postActual.titulo+".html"), "utf-8"));
+
+            Main.postActual.plantilla=Main.postActual.plantilla.replace("[FECHA]",Main.postActual.fecha);
+            Main.postActual.plantilla=Main.postActual.plantilla.replace("[TITULO]",Main.postActual.titulo);
+            Main.postActual.plantilla=Main.postActual.plantilla.replace("[IMAGEN]",Main.postActual.foto + ".png");
+            Main.postActual.plantilla=Main.postActual.plantilla.replace("[TEXTO]",Main.postActual.texto);
+
+            writer.write(Main.postActual.plantilla);
         } catch (IOException ex) {
         // report
         } finally {
@@ -103,6 +102,59 @@ class Post{
     String foto;
     String texto;
     String fecha;
+    String plantilla = 
+    		"<!DOCTYPE html> "+
+"<html>"+
+
+"<head>"+
+"  <meta charset='utf-8'>"+
+"  <meta http-equiv=\"X-UA-Compatible\" content=\"chrome=1\">"+
+"  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1, maximum-scale=1\">"+
+"  <link rel=\"stylesheet\" type=\"text/css\" href=\"css/main.css\">"+
+"  <link href=\"https://fonts.googleapis.com/css?family=Poppins\" rel=\"stylesheet\">"+
+"  <title>Bblog</title>"+
+"</head>"+
+"<body>"+
+"  <div id=\"contenedor\">"+
+"    <div id=\"main\" style=\"padding:0 16px;\">"+
+"<h2>Bblog /Bbigotes / Bmustach </h2>"+
+"<hr>"+
+"<h2>[FECHA]  [TITULO] </h2>"+
+"<img src=\"img/[IMAGEN]\" width=\"15%\" height=\"15%\" />"+
+"<p>"+
+"  [TEXTO]"+
+"</p>"+
+"</div>"+
+"</div>"+
+"</body>"+
+"<hr>"+
+"<footer>"+
+"  <ol class=\"breadcrumb\">"+
+"  <li><a href=\"../blog.html\">Volver/Back</a></li>"+
+"</ol>"+
+"  <center>"+
+"    <a class=\"twitter-follow-button\" href=\"https://twitter.com/Bbigotes\">Tweets by Bbigotes</a>"+
+"    <script async src=\"platform.twitter.com/widgets.js\" charset=\"utf-8\"></script>"+
+"    <p>Since 1988!</p>"+
+"  </center>"+
+"</footer>"+
+
+"<script>"+
+"  (function (i, s, o, g, r, a, m) {"+
+"    i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {"+
+"      (i[r].q = i[r].q || []).push(arguments)"+
+"    }, i[r].l = 1 * new Date(); a = s.createElement(o),"+
+"      m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)"+
+"  })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');"+
+
+"  ga('create', 'UA-88581538-1', 'auto');"+
+"  ga('send', 'pageview');"+
+
+"</script>"+
+
+"</html>";
+    		
+
 }
 
 class MostrarTexto{
