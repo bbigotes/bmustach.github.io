@@ -62,12 +62,12 @@ class Menu{
     
      public void mostrarMenu(){    
          System.out.println(helpText+"Bmustach MENU"+helpText);
-         String tituloOK = Main.postActual.titulo != null ? "-OK" : "";
-         String fechaOK = Main.postActual.fecha != null ? "-OK" : "";
-         String fotoOK = Main.postActual.foto != null ? "-OK" : "";
-         String textoOK = Main.postActual.texto != null ? "-OK" : "";
-         Main.mostrarTexto.text(" (1)Titulo"+tituloOK+" (2)FECHA "+fechaOK+" (3)FOTO "+fotoOK+" (4)TEXTO"+textoOK +" (5) DEPLOY!");
-        
+         String tituloOK = Main.postActual.titulo != null ? "-OK" : "1";
+         String fechaOK = Main.postActual.fecha != null ? "-OK" : "2";
+         String fotoOK = Main.postActual.foto != null ? "-OK" : "3";
+         String textoOK = Main.postActual.texto != null ? "-OK" : "4";
+         Main.mostrarTexto.text("("+tituloOK+")Titulo ("+fechaOK+")FECHA "+" ("+fotoOK+")FOTO ("+textoOK+")TEXTO (5) DEPLOY!");
+         
         try {
               int tipoMenu = Integer.parseInt( Main.scanner.next() );
               Main.menu.seleccionMenu(tipoMenu);
@@ -158,7 +158,7 @@ class Post{
 }
 
 class MostrarTexto{
-    String helpText = "####";
+    String helpText = "--";
     public void text(String texto){
            System.out.println(helpText+texto+helpText);
     }
